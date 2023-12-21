@@ -409,15 +409,27 @@ function sortByAsc() {
  * @return {string} The shuffled string.
  *
  * @example:
- *  '012345', 1 => '024135'
+ *  '012345', 1 => '024135' 012345/021345/021435
  *  'qwerty', 1 => 'qetwry'
  *  '012345', 2 => '024135' => '043215'
  *  'qwerty', 2 => 'qetwry' => 'qtrewy'
  *  '012345', 3 => '024135' => '043215' => '031425'
  *  'qwerty', 3 => 'qetwry' => 'qtrewy' => 'qrwtey'
  */
-function shuffleChar(/* str, iterations */) {
-  throw new Error('Not implemented');
+function shuffleChar(str, iterations) {
+  let iterationCount = 0;
+  let result = str;
+  while (iterationCount < iterations) {
+    let lSide = '';
+    let rSide = '';
+    for (let i = 0; i < result.length; i += 1) {
+      if (i % 2 === 0) lSide += result[i];
+      else rSide += result[i];
+    }
+    result = lSide + rSide;
+    iterationCount += 1;
+  }
+  return result;
 }
 
 /**
