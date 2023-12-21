@@ -1,85 +1,38 @@
-/**
- * Generates a spiral matrix of a given size, filled with numbers in ascending order starting from one.
- * The direction of filling with numbers is clockwise.
- * Usage of String and Array classes methods is not allowed in this task.
- *
- * @param {number} size - The size of the matrix.
- * @return {number[][]} The spiral matrix.
- *
- * @example:
- *        [
- *          [1, 2, 3],
- *  3  =>   [8, 9, 4],
- *          [7, 6, 5]
- *        ]
- *        [
- *          [1,  2,  3,  4],
- *  4  =>   [12, 13, 14, 5],
- *          [11, 16, 15, 6],
- *          [10, 9,  8,  7]
- *        ]
- */
-// function getSpiralMatrix(size) {
-//   const result = init();// = Array(size).fill([]);
-//   let leftBorder = 0;
-//   let rigthBorder = size - 1;
-//   let topBorder = 0;
-//   let downBorder = size - 1;
-//   let count = 1;
-
-//   while (count <= size ** 2){
-//     toRigth();
-//     toDown();
-//     toLeft();
-//     toUp();
+// /**
+//  * Sorts an array of numbers in ascending order in place.
+//  * Employ any sorting algorithm of your choice.
+//  * Take into account that the array can be very large. Consider how you can optimize your solution.
+//  * In this task, the use of methods of the Array and String classes is not allowed.
+//  *
+//  * @param {number[]} arr - The array to sort.
+//  * @return {number[]} The sorted array.
+//  *
+//  * @example:
+//  *  [2, 9, 5]       => [2, 5, 9]
+//  *  [2, 9, 5, 9]    => [2, 5, 9, 9]
+//  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
+//  */
+// function sortByAsc(arr) {
+//   let flag = true;
+//   const result = [];
+//   for (let i = 0; i < arr.length; i += 1) {
+//     result[i] = arr[i];
 //   }
+//   console.log(arr, result)
 
-//   return result;
-
-//   function init(){
-//     const result = [];
-//     for (let i = 0; i < size; i += 1) {
-//       result.push([]);
-//       let j = 0;
-//       while (j < size) {
-//         result[i].push(0)
-//         j += 1;
+//   function sort() {
+//     flag = false;
+//     for (let i = 0; i < result.length - 1; i += 1) {
+//       if (result[i] > result[i + 1]) {
+//         [result[i], result[i + 1]] = [result[i + 1], result[i]];
+//         flag = true;
 //       }
 //     }
-//     return result
 //   }
 
-//   function toRigth(){
-//     for (let i = leftBorder; i <= rigthBorder; i += 1){
-//       result[topBorder][i] = count;
-//       count += 1;
-//     }
-//     topBorder += 1;
-//   }
+//   while (flag) sort();
 
-//   function toDown(){
-//     for (let i = topBorder; i <= downBorder; i += 1){
-//       result[i][rigthBorder] = count;
-//       count += 1;
-//     }
-//     rigthBorder -= 1;
-//   }
-
-//   function toLeft(){
-//     for (let i = rigthBorder; i >= leftBorder; i -= 1){
-//       result[downBorder][i] = count;
-//       count += 1;
-//     }
-//     downBorder -= 1;
-//   }
-
-//   function toUp(){
-//     for (let i = downBorder; i >= topBorder; i -= 1){
-//       result[i][leftBorder] = count;
-//       count += 1;
-//     }
-//     leftBorder += 1;
-//   }
+//   return result;
 // }
 
-//  console.log(getSpiralMatrix(5))
+// console.log(sortByAsc([-2, 9, 5, -3, 10, -4 , -5, 10]), 1)
