@@ -361,26 +361,28 @@ function rotateMatrix(matrix) {
   const hight = matrix.length;
   const width = matrix[0].length;
 
-  function init() {
+  function copyInit() {
     const result = [];
     for (let i = 0; i < hight; i += 1) {
       result[i] = [];
       let j = 0;
       while (j < width) {
-        result[i][j] = 0;
+        result[i][j] = matrix[i][j];
         j += 1;
       }
     }
     return result;
   }
-  const result = init();
+  const result = matrix;
+  const copy = copyInit();
 
   for (let i = 0; i < hight; i += 1) {
     for (let j = 0; j < width; j += 1) {
-      result[j][width - i - 1] = matrix[i][j];
+      result[j][width - i - 1] = copy[i][j];
     }
   }
-  return result;
+
+  return matrix;
 }
 
 /**
@@ -397,28 +399,23 @@ function rotateMatrix(matrix) {
  *  [2, 9, 5, 9]    => [2, 5, 9, 9]
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
-function sortByAsc() {
-  // arr) {
-  // let flag = true;
-  // const result = [];
-  // for (let i = 0; i < arr.length; i += 1) {
-  //   result[i] = arr[i];
-  // }
+function sortByAsc(arr) {
+  let flag = true;
+  const result = arr;
 
-  // function sort() {
-  //   flag = false;
-  //   for (let i = 0; i < result.length - 1; i += 1) {
-  //     if (result[i] > result[i + 1]) {
-  //       [result[i], result[i + 1]] = [result[i + 1], result[i]];
-  //       flag = true;
-  //     }
-  //   }
-  // }
+  function sortgo() {
+    flag = false;
+    for (let i = 0; i < result.length - 1; i += 1) {
+      if (result[i] > result[i + 1]) {
+        [result[i], result[i + 1]] = [result[i + 1], result[i]];
+        flag = true;
+      }
+    }
+  }
 
-  // while (flag) sort();
+  while (flag) sortgo();
 
-  // return result;
-  throw new Error('Not implemented');
+  return arr;
 }
 
 /**
