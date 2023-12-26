@@ -382,7 +382,7 @@ function rotateMatrix(matrix) {
     }
   }
 
-  return matrix;
+  return result;
 }
 
 /**
@@ -403,7 +403,7 @@ function sortByAsc(arr) {
   let flag = true;
   const result = arr;
 
-  function sortgo() {
+  function sort() {
     flag = false;
     for (let i = 0; i < result.length - 1; i += 1) {
       if (result[i] > result[i + 1]) {
@@ -413,9 +413,9 @@ function sortByAsc(arr) {
     }
   }
 
-  while (flag) sortgo();
+  while (flag) sort();
 
-  return arr;
+  return result;
 }
 
 /**
@@ -437,8 +437,10 @@ function sortByAsc(arr) {
  */
 function shuffleChar(str, iterations) {
   let iterationCount = 0;
+  let resultArr = [str];
   let result = str;
-  while (iterationCount < iterations) {
+  let isRepeat = false;
+  while (iterationCount < iterations && !isRepeat) {
     let lSide = '';
     let rSide = '';
     for (let i = 0; i < result.length; i += 1) {
@@ -447,6 +449,11 @@ function shuffleChar(str, iterations) {
     }
     result = lSide + rSide;
     iterationCount += 1;
+    resultArr = [...resultArr, result];
+    if (result === str) isRepeat = true;
+  }
+  if (iterationCount < iterations) {
+    result = resultArr[iterations % (resultArr.length - 1)];
   }
   return result;
 }
