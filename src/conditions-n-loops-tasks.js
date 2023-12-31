@@ -399,21 +399,25 @@ function rotateMatrix(matrix) {
  *  [2, 9, 5, 9]    => [2, 5, 9, 9]
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
-function sortByAsc(arr) {
-  let flag = true;
-  const result = arr;
 
-  function sort() {
-    flag = false;
-    for (let i = 0; i < result.length - 1; i += 1) {
-      if (result[i] > result[i + 1]) {
-        [result[i], result[i + 1]] = [result[i + 1], result[i]];
-        flag = true;
-      }
+function sortByAsc(arr) {
+  const result = arr;
+  let sortIndex = 0;
+
+  function sort1() {
+    let indexOfMin = sortIndex;
+    for (let i = sortIndex; i < result.length; i += 1) {
+      if (result[i] < result[indexOfMin]) indexOfMin = i;
     }
+    if (indexOfMin !== sortIndex)
+      [result[indexOfMin], result[sortIndex]] = [
+        result[sortIndex],
+        result[indexOfMin],
+      ];
+    sortIndex += 1;
   }
 
-  while (flag) sort();
+  while (sortIndex < result.length) sort1();
 
   return result;
 }
@@ -428,7 +432,8 @@ function sortByAsc(arr) {
  * @return {string} The shuffled string.
  *
  * @example:
- *  '012345', 1 => '024135' 012345/021345/021435
+ *  '
+ * ', 1 => '024135' 012345/021345/021435
  *  'qwerty', 1 => 'qetwry'
  *  '012345', 2 => '024135' => '043215'
  *  'qwerty', 2 => 'qetwry' => 'qtrewy'
