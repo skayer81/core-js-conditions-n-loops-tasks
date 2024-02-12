@@ -405,14 +405,14 @@ function sortByAsc(arr) {
     return arr2;
   }
   const pivot = arr2[arr2.length - 1];
-  let lessArr = [];
-  let moreArr = [];
+  const lessArr = [];
+  const moreArr = [];
 
   for (let i = 0; i < arr2.length - 1; i += 1) {
     if (arr2[i] < pivot) {
-      lessArr = [...lessArr, arr2[i]];
+      lessArr[lessArr.length] = arr2[i];
     } else {
-      moreArr = [...moreArr, arr2[i]];
+      moreArr[moreArr.length] = arr2[i];
     }
   }
 
