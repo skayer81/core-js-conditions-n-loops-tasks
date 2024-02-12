@@ -399,27 +399,29 @@ function rotateMatrix(matrix) {
  *  [2, 9, 5, 9]    => [2, 5, 9, 9]
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
-
 function sortByAsc(arr) {
-  const result = arr;
-  let sortIndex = 0;
+  const arr2 = arr;
+  if (arr2.length <= 1) {
+    return arr2;
+  }
+  const pivot = arr2[arr2.length - 1];
+  let lessArr = [];
+  let moreArr = [];
 
-  function sort1() {
-    let indexOfMin = sortIndex;
-    for (let i = sortIndex; i < result.length; i += 1) {
-      if (result[i] < result[indexOfMin]) indexOfMin = i;
+  for (let i = 0; i < arr2.length - 1; i += 1) {
+    if (arr2[i] < pivot) {
+      lessArr = [...lessArr, arr2[i]];
+    } else {
+      moreArr = [...moreArr, arr2[i]];
     }
-    if (indexOfMin !== sortIndex)
-      [result[indexOfMin], result[sortIndex]] = [
-        result[sortIndex],
-        result[indexOfMin],
-      ];
-    sortIndex += 1;
   }
 
-  while (sortIndex < result.length) sort1();
+  const arr3 = [...sortByAsc(lessArr), pivot, ...sortByAsc(moreArr)];
+  for (let i = 0; i < arr3.length; i += 1) {
+    arr2[i] = arr3[i];
+  }
 
-  return result;
+  return arr;
 }
 
 /**
